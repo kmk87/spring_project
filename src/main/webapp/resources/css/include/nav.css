@@ -8,14 +8,19 @@ nav {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center; /* 중앙에 배치 */
+    align-items: center;
+    flex-direction: column;
 }
 
 #nav_wrap .menu {
-    border-bottom: 1px solid #e0e0e0;
-    padding: 10px 0;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
 }
 
 #nav_wrap .menu ul {
@@ -38,63 +43,62 @@ nav {
     color: #2980b9;
 }
 
-#nav_wrap .search {
-    height: auto;
-    line-height: 1.6;
-    text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid #e0e0e0;
+#nav_wrap .search-container {
+    display: flex; /* 검색창과 버튼을 나란히 배치 */
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: center;
+    gap: 0px; /* 검색창과 버튼 사이의 간격을 없앰 */
 }
 
-#nav_wrap .search input[type='text'] {
-    width: 100%;
-    max-width: 400px;
-    padding: 12px 15px;
-    border: 1px solid #dcdcdc;
-    border-radius: 5px;
+.search-container input[type='text'] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #adadad;
+    border-radius: 5px 0 0 5px; /* 왼쪽 모서리만 둥글게 */
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    margin: 0; /* 마진 제거 */
 }
 
-#nav_wrap .search input[type='text']:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
-    outline: none;
-}
-
-#nav_wrap .search input[type='submit'] {
-    width: 100%;
-    max-width: 100px;
-    padding: 12px;
-    margin-left: 10px;
+.search-container input[type='submit'] {
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 0 5px 5px 0; /* 오른쪽 모서리만 둥글게 */
     background-color: #3498db;
     color: white;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin: 0; /* 마진 제거 */
 }
 
-#nav_wrap .search input[type='submit']:hover {
+.search-container input[type='submit']:hover {
     background-color: #2980b9;
 }
 
-/* 반응형 디자인 추가 */
+/* 반응형 디자인 */
 @media (max-width: 768px) {
-    #nav_wrap .menu ul {
+    #nav_wrap {
         flex-direction: column;
         align-items: center;
     }
 
-    #nav_wrap .search input[type='text'],
-    #nav_wrap .search input[type='submit'] {
-        width: 100%;
-        max-width: 100%;
-        margin: 10px 0;
+    #nav_wrap .menu {
+        justify-content: center;
     }
 
-    #nav_wrap .menu ul li {
-        margin: 10px 0;
+    #nav_wrap .menu ul {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #nav_wrap .search-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .search-container input[type='text'],
+    .search-container input[type='submit'] {
+        width: 100%;
     }
 }

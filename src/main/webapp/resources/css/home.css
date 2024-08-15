@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+section {
+    margin: 40px 0; /* 여백을 조금 더 넉넉하게 설정 */
+    padding: 0 20px; /* 좌우 여백 추가로 콘텐츠가 화면에 맞게 조정되도록 함 */
+}
+
+#section_wrap {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#section_wrap .word {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9; /* 배경색 추가로 콘텐츠 영역 강조 */
+    border-radius: 8px; /* 부드러운 모서리 추가 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 약간의 그림자로 콘텐츠 강조 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    #section_wrap .word {
+        width: 100%;
+        padding: 15px;
+    }
+}
