@@ -14,9 +14,18 @@ public class BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<Board> selectBoardList(){
-		return sqlSession.selectList("boardMapper.selectBoardList");
+	
+	public int selectBoardCount(Board option) {
+		return sqlSession.selectOne("boardMapper.selectBoardCount",option);
 	}
 	
+	
+	public List<Board> selectBoardList(Board vo){
+		return sqlSession.selectList("boardMapper.selectBoardList", vo);
+	}
+	
+	public int createBoard(Board vo) {
+		return sqlSession.insert("boardMapper.createBoard",vo);
+	}
 	
 }

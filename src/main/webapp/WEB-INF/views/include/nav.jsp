@@ -12,12 +12,21 @@
             </ul>
         </div>
         <!-- 검색창 -->
-        <div class="search-container">
-            <form>
-                <input type="text" name="search" placeholder="검색어를 입력하세요">
-                <input type="submit" value="검색">
-            </form>
-        </div>
+       <div class="search">
+			<form action="<c:url value='/board'/>"  method="get">
+				<select name="search_type" style="width:160px;">
+					<option value="1" <c:if test="${paging.search_type == '1' }">selected</c:if>>제목</option>
+					<option value="2" <c:if test="${paging.search_type == '2' }">selected</c:if>>내용</option>
+					<option value="3" <c:if test="${paging.search_type == '3' }">selected</c:if>>제목 + 내용</option>
+				</select>
+				
+				<div class="search-container">
+    				<input type="text" name="search_text" placeholder="검색어를 입력하세요"
+        			value="<c:out value='${paging.search_text }'/>">
+    				<input type="submit" value="검색">
+				</div>
+			</form>
+		</div>
     </div>
 </nav>
 

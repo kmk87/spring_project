@@ -2,6 +2,8 @@ package com.mk.spring.board.model.vo;
 
 import java.util.Date;
 
+import com.mk.spring.common.Paging;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,9 +15,19 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Board {
+public class Board extends Paging {
 	private int board_no;
 	private String board_title;
 	private String board_content;
 	private Date reg_date;
+	private String board_writer;
+	
+	
+	private int search_type = 1;
+	private String search_text;
+	
+	
+	private String ori_thumbnail;
+	private String new_thumbnail;
+	
 }

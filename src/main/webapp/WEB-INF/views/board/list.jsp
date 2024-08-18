@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>게시판 목록</title>
 <link href="<c:url value='/resources/css/board/list.css'/>" rel="stylesheet" type="text/css" />
+<link href='<c:url value="/resources/css/include/paging.css"/>' rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"/>
@@ -21,9 +22,9 @@
 				<table>
 					<colgroup>
 						<col width="10%">
-						<col width="40%">
-						<col width="20%">
-						<col width="20%">
+						<col width="30%">
+						<col width="30%">
+						<col width="15%">
 						<col width="10%">
 					</colgroup>
 					<thead>
@@ -32,7 +33,7 @@
 							<th>제목</th>
 							<th>내용</th>
 							<th>작성일자</th>
-							<th>상세</th>
+							<th>작성자</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -44,14 +45,12 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${resultList }" var="b" varStatus="status">
-									<tr>
-										<td><c:out value="${status.count }"/></td>
-										<td><c:out value="${b.board_title }"/></td>
+									<tr data-no="${b.board_no }">
+										<td><c:out value="${paging.numPerPage*(paging.nowPage-1)+status.count }"/></td>
+										<td><a href="/board/${b.board_no }"><c:out value="${b.board_title }"/></a></td>
 										<td><c:out value="${b.board_content }"/></td>
 										<td><fmt:formatDate pattern="yy-MM-dd" value="${b.reg_date }"/></td>
-										<td>
-											<a href="/board/${b.board_no }">상세</a>
-										</td>
+										<td><c:out value="${b.board_writer }"/></td>
 									</tr>
 									
 								</c:forEach>
@@ -59,8 +58,23 @@
 						</c:choose>
 					</tbody>
 				</table>
+				<c:if test="${not empty paging }">
+					<div class="center">
+	  					<div class="pagination">
+	  						<c:if test="${paging.prev}">
+	  							<a href="<c:url value='/board?nowPage=${paging.pageBarStart-1}&search_type=${paging.search_type}&search_text=${paging.search_text}'/>">&laquo;</a>
+	  						</c:if>
+	  						<c:forEach begin="${paging.pageBarStart}" end="${paging.pageBarEnd}" var="idx">
+	  							<a href="<c:url value='/board?nowPage=${idx}&search_type=${paging.search_type}&search_text=${paging.search_text}'/>" <c:out value="&{paging.nowPage == idx ? 'class=active' : '' }"/>>${idx}</a>
+	  						</c:forEach>
+								<c:if test="${paging.next}">
+		  							<a href="<c:url value='/board?nowPage=${paging.pageBarEnd+1}&search_type=${paging.search_type}&search_text=${paging.search_text}'/>">&raquo;</a>
+								</c:if>
+	  					</div>
+					</div>
+				</c:if>
 				<div class="button_wrap">
-            		<input type="button" value="등록" class="register_button">
+            		<input type="button" value="등록" class="register_button" onclick="location.href='<c:url value='/board/create'/>';">
         		</div>
 			</div>
 		</div>

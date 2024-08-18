@@ -19,10 +19,20 @@ public class BoardViewController {
 	
 	
 	@GetMapping("/board")
-	public String selectBoardList(Model model) {
-		List<Board> resultList = service.selectBoardList();
+	public String selectBoardList(Board option, Model model) {
+		option.setTotalData(service.selectBoardCount(option));
+		List<Board> resultList = service.selectBoardList(option);
 		model.addAttribute("resultList",resultList);
+		model.addAttribute("paging",option);
 		return "/board/list";
 	}
+	
+	
+	@GetMapping("/board/create")
+	public String createBoardPage() {
+		return "/board/create";
+	}
+	
+	
 	
 }
