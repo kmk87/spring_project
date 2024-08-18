@@ -4,6 +4,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
 
+	<update id="updateBoard" parameterType="com.mk.spring.board.model.vo.Board">
+		UPDATE `board`
+		SET board_title = #{board_title},board_content = #{board_content}
+		<if test='ori_thumbnail != null and new_thumbnail != null'>
+			,ori_thumbnail = #{ori_thumbnail}
+			,new_thumbnail = #{new_thumbnail}
+		</if>
+		WHERE board_no = #{board_no}
+	</update>
+
 	<select id="selectBoardOne" parameterType="_int" resultType="com.mk.spring.board.model.vo.Board">
 		SELECT *
 		FROM `board`

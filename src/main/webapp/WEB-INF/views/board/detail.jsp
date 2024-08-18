@@ -54,7 +54,7 @@
 			</div>
 			
 			<div class="buttons">
-				<a class="update_board_button" href="">게시글 수정</a>
+				<a class="update_board_button" href="<c:url value='/board/update/${vo.board_no }' />">게시글 수정</a>
 				<a class="delete_board_button" href="">게시글 삭제</a>			
 			</div>
 		</div>

@@ -65,6 +65,16 @@ public class BoardService {
 		return vo;
 	}
 	
-	
+	// 게시글 수정
+	public int updateBoard(Board vo) {
+		int result = 0;
+		try {
+			result = dao.updateBoard(vo);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 }

@@ -48,4 +48,29 @@ public class BoardApiController {
 		return map;
 	}
 	
+	
+	@ResponseBody
+	@PostMapping("/board/{board_no}")
+	public Map<String,String> updateBoard(Board vo, @RequestParam(name = "file", required = false) MultipartFile file){
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("res_codde","404");
+		map.put("res_msg", "게시글 수정 중 오류가 발생했습니다.");
+		
+		if(file != null && !"".equals(file.getOriginalFilename())) {
+			String savedFileName = uploadFileService.upload(file);
+			if(savedFileName != null) {
+				vo.setOri_thumbnail(file.getOriginalFilename());
+				vo.setNew_thumbnail(savedFileName);
+			} else {
+				map.put("res_msg", "파일 업로드 중 오류가 발생했습니다.");
+			}
+		}
+		
+		if(boardService.updateBoard(vo) > 0) {
+			map.put("res_code", "200");
+			map.put("res_msg", "게시글이 성공적으로 수정되었습니다.");
+		}
+		return map;
+	}
+	
 }

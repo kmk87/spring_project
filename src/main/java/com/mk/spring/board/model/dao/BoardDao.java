@@ -32,6 +32,9 @@ public class BoardDao {
 		return sqlSession.selectOne("boardMapper.selectBoardOne",board_no);
 	}
 	
+	public int updateBoard(Board vo) {
+		return sqlSession.update("boardMapper.updateBoard",vo);
+	}
 	
 	
 }
