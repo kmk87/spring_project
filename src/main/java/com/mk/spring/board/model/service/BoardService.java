@@ -53,5 +53,18 @@ public class BoardService {
 	}
 	
 	
+	// 게시글 상세조회
+	public Board selectBoardOne(int board_no) {
+		Board vo = null;
+		try {
+			vo = dao.selectBoardOne(board_no);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+	
+	
 	
 }

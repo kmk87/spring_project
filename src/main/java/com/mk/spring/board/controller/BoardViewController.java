@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mk.spring.board.model.service.BoardService;
 import com.mk.spring.board.model.vo.Board;
@@ -33,6 +34,12 @@ public class BoardViewController {
 		return "/board/create";
 	}
 	
+	@GetMapping("/board/{board_no}")
+	public String selectBoardOne(@PathVariable("board_no") int board_no, Model model) {
+		Board vo = service.selectBoardOne(board_no);
+		model.addAttribute("vo",vo);
+		return "/board/detail";
+	}
 	
 	
 }
