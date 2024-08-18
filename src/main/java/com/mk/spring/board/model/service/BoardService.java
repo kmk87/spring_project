@@ -77,4 +77,18 @@ public class BoardService {
 		return result;
 	}
 	
+	// 게시글 삭제
+	public int deleteBoard(int board_no) {
+		int result = 0;
+		try {
+			result = dao.deleteBoard(board_no);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	
+	
 }
